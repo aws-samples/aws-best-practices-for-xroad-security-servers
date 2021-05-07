@@ -188,17 +188,23 @@ Use federated login for security server users, when possible.
 * [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
 * [Amazon EC2 Instance Profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html)
 
+**Example:**
+
+![Using Temporary Credentials](img/sec-temporary-credentials.png)
+
+System administrators can log in to AWS accounts, using either AWS SSO identities or through federated identities from an 
+already established identity provider (such as Active Directory). With the CLI version 2, SSO identities can be used for
+command-line tools, removing the need for long-term credentials, such as IAM access keys.
+
 #### SEC_IAM_x: Store and Use Secrets Securely
 
 For credentials that are not IAM-related, like database usernames and passwords, use a service that is designed
-to handle management of secrets. Audit and rotate credentials frequently. Configure automatic rotation of database
-credentials.
+to handle management of secrets (e.g. AWS Secrets Manager). Audit and rotate credentials frequently. Configure automatic 
+rotation of database credentials.
 
 **Recommended tools:**
 * [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)
 * [AWS Config](https://aws.amazon.com/config/)
-
-![Using Temporary Credentials](img/sec-temporary-credentials.png)
 
 ### Detection
 
@@ -246,22 +252,24 @@ Disable SSH access to security servers. Use AWS System Manager sessions to conne
 rare (break-glass) occasions when interactive human access is required. Do not allow direct operator access to the 
 databases.
 
+**Recommended tools:**
+* [AWS Systems Manager Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)
+
 ### Data Protection
 
-#### SEC_DTP_x: Enforce Encryption at Rest
+#### SEC_DTP_x: Enforce Encryption at Rest and in Transit
 
 Configure storage volumes and databases to be encrypted at rest. Create your own encryption keys, instead of 
 default service-managed keys. If you need to be able to completely and immediately remove an encryption key 
 from the AWS environment, provide your own key material that you keep a secure copy of outside AWS. Audit the
 use of encryption keys. Make sure that encryption is enabled by default.
 
+Enforce TLS for communications between security servers and consumer / producer information systems. Enable secure
+communication between security servers and the security server database cluster. Authenticate network communications, 
+where possible.
+
 **Recommended tools:**
 * [AWS Key Management Service](https://aws.amazon.com/kms/)
-
-#### SEC_DTP_x: Enforce Encryption in Transit
-
-Enforce TLS for communications between security servers and consumer / producer information systems. Enable secure
-communication between security servers and the security server database cluster. Authenticate network communications.
 
 ### Incident Response
 
@@ -270,6 +278,9 @@ communication between security servers and the security server database cluster.
 Ensure that incident responders have correct access pre-provisioned into AWS environments to reduce the time for 
 investigation through to recovery. Pre-deploy necessary tools for incident response. Run game days (exercises) to
 practice your incident management plans and procedures. Automate containment and recovery capabilities.
+
+**Recommended tools:**
+* [AWS Fault Injection Simulator](https://aws.amazon.com/fis/)
 
 ## Reliability
 
@@ -289,11 +300,15 @@ overheads.
 
 #### REL_ARC_x: Separate Compute and Storage
 
-Use EBS volumes, and a separate Amazon RDS database for storing data at rest. This allows for security servers
-to be scaled and replaced without affecting data integrity.
+By separating storage from the compute layer, it becomes easier to replace and scale each separately. For security servers
+running as EC2 instances, you can pick between EBS volumes or EFS file systems for storage. With sidecar container deployments, 
+mounting EFS file systems is the best option for persistent storage. 
+
+Prefer using an Amazon RDS database over the built-in PostgreSQL option for best performance and availability.
 
 **Recommended tools:**
 * [Amazon Elastic Block Store](https://aws.amazon.com/ebs/)
+* [Amazon Elastic File System](https://aws.amazon.com/efs/)
 * [Amazon Relational Database Service](https://aws.amazon.com/rds/)
 
 #### REL_ARC_x: Scale Horizontally to Increase Availability
@@ -348,13 +363,16 @@ database instances (writer and reader) in the same availability zones for lowest
 situation of component failure. Configure health checks on security servers to allow for the auto-scaling group to 
 replace a failed instance.
 
+For sidecar security servers (container-based deployments), define your workload as an ECS or EKS service, to let
+the container platform manage the lifecycles of security server containers.
+
 #### REL_FLM_x: Test Reliability
 
 Periodically verify recovery procedures. Adopt chaos engineering principles to introduce failures in your security
 server environment. Verify that you can quickly recover from database failures or corruptions. Verify recovery from
 the loss of a single security server instance.
 
-Recommended tools:
+**Recommended tools:**
 * [AWS Fault Injection Simulator](https://aws.amazon.com/fis/)
 
 ## Performance Efficiency
@@ -364,15 +382,36 @@ Recommended tools:
 #### PRF_SEL_x: Pick the Right Compute Option
 
 Test your security server performance to pick the best instance or compute type to run your security server workload.
+Additionally, consider how the security server fits into your service development and operations landscape. For example,
+if you are looking to deploy a standalone security server in front of multiple services and the security server would
+be managed by a dedicated team experienced in server administration, deploying as an EC2 instance could be the best fit.
+On the other hand, if the security server is directly coupled to a single containerized service and would benefit from sharing 
+deployment and operations best practices with the service, deploying the security server sidecar container on top of 
+either Elastic Container Service (ECS) or Elastic Kubernetes Service (EKS) would be the best way to go.
+
 For EC2-based security servers:
 - c5.large, c5a.large for better CPU performance at a lower cost
 - t3.medium, t3a.medium for a better price point when there's no sustained load on the CPU
 - m5.large, m5a.large when running low on memory
 
+For ECS and EKS based container deployments:
+- Prefer Fargate as the compute engine to reduce server management overhead.
+- If Fargate is not an option, use the same guidance as for EC2-based security servers when picking a container host.
+
+**Recommended tools:**
+* [Amazon EC2](https://aws.amazon.com/ec2)
+* [Amazon Elastic Container Service](https://aws.amazon.com/ecs)
+* [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks)
+
+
 #### PRF_SEL_x: Pick the Right Database Option
 
 Prefer AWS-managed database services over self-managed database options. Use Amazon Aurora PostgreSQL or Amazon Aurora
 Serverless (where available), for best availability and minimal management requirements.
+
+**Recommended tools:**
+* [Amazon Aurora](https://aws.amazon.com/rds/aurora/)
+* [Amazon Aurora Serverless](https://aws.amazon.com/rds/aurora/serverless/)
 
 ### Review
 
@@ -390,6 +429,9 @@ infrastructure setup of your X-Road environments. Analyze metrics when events or
 diagnose the impact. Establish Key Performance Indicators, such as API latency, to quantify the performance experience
 expected by your customers.
 
+**Recommended tools:**
+* [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/)
+
 ## Cost Optimization
 
 ### Financial Management
@@ -398,7 +440,8 @@ expected by your customers.
 
 Quantify how much it costs to receive or send a single X-Road request in your environment. Consider not only the 
 infrastructure costs, but also the recurring costs of managing the infrastructure (engineer time) and costs of 
-incidents (incident response time, loss of trust / business).
+incidents (incident response time, loss of trust / business). Consider environmental impact and sustainability
+as a part of delivering business value in a responsible manner.
 
 ### Expenditure Awareness
 
@@ -409,6 +452,9 @@ most accurate view of cost and usage across your entire organization. When possi
 cost and usage by tagging your resources. This allows you to understand how your X-Road infrastructure costs relate
 to the cost of your entire infrastructure.
 
+**Recommended tools:**
+* [AWS Billing and Cost Management](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html)
+
 ### Cost Effective Resources
 
 #### CST_RES_x: Select the Best Pricing Model
@@ -418,3 +464,6 @@ cost-effective way that suits your organization’s needs. Use On Demand or Spot
 security server instances, such as extra capacity to handle peak workloads or capacity to run ad hoc testing 
 environments. Use Compute Savings Plans or EC2 Instance Savings Plans for the bulk of your security server workload 
 to reduce server costs.
+
+**Recommended tools:**
+* [Savings Plans](https://aws.amazon.com/savingsplans/)
