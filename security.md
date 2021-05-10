@@ -36,11 +36,13 @@ command-line tools, removing the need for long-term credentials, such as IAM acc
 
 For credentials that are not IAM-related, like database usernames and passwords, use a service that is designed
 to handle management of secrets (e.g. AWS Secrets Manager). Audit and rotate credentials frequently. Configure automatic 
-rotation of database credentials.
+rotation of database credentials. When required, use a Hardware Security Module (e.g. AWS CloudHSM) for storing encryption 
+keys.
 
 **Recommended tools:**
 * [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/)
 * [AWS Config](https://aws.amazon.com/config/)
+* [AWS CloudHSM](https://aws.amazon.com/cloudhsm/)
 
 ## Detection
 
