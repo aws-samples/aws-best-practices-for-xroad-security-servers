@@ -20,7 +20,8 @@ By separating storage from the compute layer, it becomes easier to replace and s
 running as EC2 instances, you can pick between EBS volumes or EFS file systems for storage. With sidecar container deployments, 
 mounting EFS file systems is the best option for persistent storage. 
 
-Prefer using an Amazon RDS database over the built-in PostgreSQL option for best performance and availability.
+Prefer using an Amazon RDS database over the built-in PostgreSQL option for best performance and availability. Also, prefer
+sharing an RDS cluster between multiple Security Servers over setting up an RDS cluster per Security Server.
 
 **Recommended tools:**
 * [Amazon Elastic Block Store](https://aws.amazon.com/ebs/)
@@ -29,7 +30,7 @@ Prefer using an Amazon RDS database over the built-in PostgreSQL option for best
 
 ### REL_ARC_x: Scale Horizontally to Increase Availability
 
-Instead of one large Security Servers, deploy multiple small ones to reduce the impact of a single failure on the 
+Instead of one large Security Server, deploy multiple small ones to reduce the impact of a single failure on the 
 overall workload. Distribute requests across Security Servers to ensure that they don’t share a common point of 
 failure.
 
@@ -67,7 +68,8 @@ canary tests, such that you can assess system health during and after the deploy
 
 Configure automatic backups for Security Server databases, through RDS snapshots and point-in-time recovery. Configure
 logs to be backed up to S3 in addition to CloudWatch for auditing purposes. Periodically verify that backups can be
-used in a disaster recovery scenario.
+used in a disaster recovery scenario. Also, don't forget to transfer the message log archive files to an external
+storage, for example, EFS file system or S3 bucket.
 
 Recommended tools:
 * [Amazon RDS Backups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html)

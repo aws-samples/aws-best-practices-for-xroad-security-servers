@@ -17,6 +17,9 @@ For EC2-based Security Servers:
 - t3.medium, t3a.medium for a better price point when there's no sustained load on the CPU
 - m5.large, m5a.large when running low on memory
 
+To guarantee the best performance and efficient use of resources, always adjust the memory allocation of different 
+Security Server components with respect to the EC2 host's available memory.
+
 For ECS and EKS based container deployments:
 - Prefer Fargate as the compute engine to reduce server management overhead.
 - If Fargate is not an option, use the same guidance as for EC2-based Security Servers when picking a container host.

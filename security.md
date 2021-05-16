@@ -102,7 +102,7 @@ default service-managed keys. If you need to be able to completely and immediate
 from the AWS environment, provide your own key material that you keep a secure copy of outside AWS. Audit the
 use of encryption keys. Make sure that encryption is enabled by default.
 
-Enforce TLS for communications between Security Servers and consumer / producer information systems. Enable secure
+Enforce mutual TLS for communications between Security Servers and consumer / producer information systems. Enable secure
 communication between Security Servers and the Security Server database cluster. Authenticate network communications, 
 where possible.
 
