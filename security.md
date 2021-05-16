@@ -14,9 +14,9 @@ the resources through the minimal set of operations required to perform their du
 
 For workforce identities, use Single Sign-On (SSO), or federation with IAM, to access AWS accounts by assuming
 roles. For users that require command-line access, ensure that they use AWS CLI v2 with SSO login. 
-Security servers should be using IAM roles to access AWS services.
+Security Servers should be using IAM roles to access AWS services.
 
-Use federated login for security server users, when possible.
+Use federated login for Security Server users, when possible.
 
 **Recommended tools:**
 * [AWS IAM](https://aws.amazon.com/iam/)
@@ -48,7 +48,7 @@ keys.
 
 ### SEC_DET_x: Configure Service and Application Logging
 
-Configure logging not only for security servers, but for the entire AWS account. Use AWS CloudTrail to log AWS account
+Configure logging not only for Security Servers, but for the entire AWS account. Use AWS CloudTrail to log AWS account
 activity, AWS Config to monitor and record resource configuration, Amazon GuardDuty for thread detection, 
 and AWS Security Hub for collecting security alerts and findings in a single place.
 
@@ -74,8 +74,8 @@ systems, like SIEM solutions, bug trackers or ticketing systems, allowing you to
 ### SEC_IFP_x: Limit Network Access
 
 Use security groups to limit incoming traffic to only the ports required for communications from the consumer 
-information system (internally) and from other security servers (externally). Limit access to the database cluster
-only from security servers to the primary database connection port. Layer your networks - have your security servers,
+information system (internally) and from other Security Servers (externally). Limit access to the database cluster
+only from Security Servers to the primary database connection port. Layer your networks - have your Security Servers,
 information systems and databases deployed on separate network layers to have the most control over network traffic
 on the layer boundaries.
 
@@ -86,7 +86,7 @@ on the layer boundaries.
 
 ### SEC_IFP_x: Limit Human Operator Access
 
-Disable SSH access to security servers. Use AWS System Manager sessions to connect to the security servers on the 
+Disable SSH access to Security Servers. Use AWS System Manager sessions to connect to the Security Servers on the 
 rare (break-glass) occasions when interactive human access is required. Do not allow direct operator access to the 
 databases.
 
@@ -102,8 +102,8 @@ default service-managed keys. If you need to be able to completely and immediate
 from the AWS environment, provide your own key material that you keep a secure copy of outside AWS. Audit the
 use of encryption keys. Make sure that encryption is enabled by default.
 
-Enforce TLS for communications between security servers and consumer / producer information systems. Enable secure
-communication between security servers and the security server database cluster. Authenticate network communications, 
+Enforce TLS for communications between Security Servers and consumer / producer information systems. Enable secure
+communication between Security Servers and the Security Server database cluster. Authenticate network communications, 
 where possible.
 
 **Recommended tools:**

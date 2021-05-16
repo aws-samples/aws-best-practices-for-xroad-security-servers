@@ -27,8 +27,8 @@ to the cost of your entire infrastructure.
 
 AWS has multiple [pricing models](http://aws.amazon.com/pricing/) that allow you to pay for your resources in the most 
 cost-effective way that suits your organization’s needs. Use On Demand or Spot capacity (if available) for short-lived 
-security server instances, such as extra capacity to handle peak workloads or capacity to run ad hoc testing 
-environments. Use Compute Savings Plans or EC2 Instance Savings Plans for the bulk of your security server workload 
+Security Server instances, such as extra capacity to handle peak workloads or capacity to run ad hoc testing 
+environments. Use Compute Savings Plans or EC2 Instance Savings Plans for the bulk of your Security Server workload 
 to reduce server costs.
 
 **Recommended tools:**

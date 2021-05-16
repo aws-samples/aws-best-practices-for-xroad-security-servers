@@ -10,7 +10,8 @@ Security Servers are required for both producing and consuming data and services
 This project discusses the best practices for deploying X-Road Security Servers on AWS through the lens of 
 [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected). The AWS Well-Architected 
 Framework describes the key concepts, design principles, and architectural best practices for designing and running 
-workloads in the cloud.
+workloads in the cloud. The AWS Well-Architected Framework consists of five pillars that are covered in different 
+sections of this project.
 
 ### [Operational Excellence](operational-excellence.md)
 
