@@ -5,7 +5,7 @@
 ### OPS_DEV_01: Codify Infrastructure
 
 In the cloud, you can apply the same engineering discipline that you use for 
-application code to your entire environment. Define your security server infrastructure
+application code to your entire environment. Define your Security Server infrastructure
 as templates and scripts. Store the codified infrastructure in a version control system.
 Make frequent, small, reversible changes to your templates and scripts. Apply code review
 practices to reduce human errors.
@@ -20,7 +20,7 @@ practices to reduce human errors.
 
 ![Infrastructure Example](img/ops-codify-infrastructure.png)
 
-When working on security server setup, system engineers use Cloud9 as a co-working, online integrated development
+When working on Security Server setup, system engineers use Cloud9 as a co-working, online integrated development
 environment to author infrastructure changes as code. Engineers use the Cloud Development Kit to work in a more
 traditional programming language, synthesizing their infrastructure code into CloudFormation templates or work on 
 CloudFormation templates directly. Templates are stored in a Git repository in CodeCommit and picked up by
@@ -30,7 +30,7 @@ CodePipeline to facilitate automated deployment.
 
 Similarly to how you can apply coding practices to both software and infrastructure, you 
 should apply testing and validation practices to both. Build a pipeline that would deploy 
-the latest version of the security server packages into a pre-production (test) environment.
+the latest version of the Security Server packages into a pre-production (test) environment.
 
 **Recommended tools:**
 * [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
@@ -41,14 +41,14 @@ the latest version of the security server packages into a pre-production (test) 
 
 ![Test and Validate Changes](img/ops-test-validate-resources.png)
 
-AWS resources, like security server instances, databases and security groups are deployed in separate VPCs for 
+AWS resources, like Security Server instances, databases and security groups are deployed in separate VPCs for 
 different X-Road environments. Depending on your security and governance need, the consumer and producer information
-systems can be either deployed into the same VPCs as corresponding security servers, into separate VPCs or into 
+systems can be either deployed into the same VPCs as corresponding Security Servers, into separate VPCs or into 
 completely separate AWS accounts.
 
 ### OPS_DEV_03: Use Configuration Management
 
-Manage and track configuration changes externally to the security servers, either through source control or a 
+Manage and track configuration changes externally to the Security Servers, either through source control or a 
 configuration management service. Store sensitive configuration 
 (user credentials, keystore passwords etc.), in Secrets Manager, SSM Parameter Store or any 
 other service that enables the safe handling of secret data. 
@@ -60,7 +60,7 @@ other service that enables the safe handling of secret data.
 ![Use Configuration Management](img/ops-config-management.png)
 
 Configuration parameters that change over time can be stored in AWS Systems Manager Parameter Store. This allows
-the parameters to be fetched when the security server starts. When using the containerized version of the security
+the parameters to be fetched when the Security Server starts. When using the containerized version of the security
 server, the configuration can directly be referred to when setting up the environment for the container. Keep the
 parameters containing secrets (usernames, passwords) in AWS Secrets Manager to enable automatic rotation. 
 
@@ -68,7 +68,7 @@ parameters containing secrets (usernames, passwords) in AWS Secrets Manager to e
 
 ### OPS_DEP_01: Automate Deployment
 
-Automate security server deployments, such that they are repeatable without user intervention. 
+Automate Security Server deployments, such that they are repeatable without user intervention. 
 This minimizes human error in the deployment process, enables automated recovery from infrastructure
 failures, and allows you to create test environments with relative ease. For more complex deployment processes use 
 AWS Step Functions for coordination.
@@ -80,14 +80,14 @@ AWS Step Functions for coordination.
 
 ### OPS_DEP_02: Perform Rolling Deployments
 
-When deploying a newer version of the security server, roll your environment gradually over to 
+When deploying a newer version of the Security Server, roll your environment gradually over to 
 the new version, without impacting availability. For example, if your environment contains two
-security servers in high availability configuration, start a deployment by deploying a third 
-security server and direct some X-Road request traffic to that server. If the server
+Security Servers in high availability configuration, start a deployment by deploying a third 
+Security Server and direct some X-Road request traffic to that server. If the server
 behaves as expected, decommission one of the original two servers and deploy a second copy 
 of the new version, eventually finishing the deployment by terminating the second original 
-security server. If at any point in this process, a security server or its infrastructure should 
-fail, you will still have at least one healthy security server serving a part of the traffic.
+Security Server. If at any point in this process, a Security Server or its infrastructure should 
+fail, you will still have at least one healthy Security Server serving a part of the traffic.
 
 **Recommended tools:**
 * [EC2 Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html)
@@ -97,11 +97,11 @@ fail, you will still have at least one healthy security server serving a part of
 
 ### OPS_MON_01: Collect Logs and Metrics Centrally
  
-Collect system logs and health metrics from security servers into a central log storage that 
+Collect system logs and health metrics from Security Servers into a central log storage that 
 can be used to analyze these and take action upon anomalies found in the logs.
 
-Use Amazon CloudWatch Agent to collect logs from security servers. If the CloudWatch agent cannot be installed,
-you can mount an Elastic File System share to your security server and write the logs to a mounted file system.
+Use Amazon CloudWatch Agent to collect logs from Security Servers. If the CloudWatch agent cannot be installed,
+you can mount an Elastic File System share to your Security Server and write the logs to a mounted file system.
 To store logs for a longer period of time, store these in S3. Configure S3 intelligent tiering to automatically
 optimize your storage costs, depending on the frequency of access of logs.
 
@@ -125,11 +125,11 @@ export task can be created periodically to export the specific log groups to S3 
 
 ### OPS_MON_02: Build a Monitoring Dashboard
 
-Build a dashboard that surfaces the most critical metrics about security servers that you need
+Build a dashboard that surfaces the most critical metrics about Security Servers that you need
 to assess system health. For example:
 1. Server CPU and Memory usage
 2. Number of errors detected in system logs over a period of x minutes
-3. Number of healthy security servers
+3. Number of healthy Security Servers
 4. Number of failed health checks over a period of x minutes
 
 Review and improve the metrics and dashboard periodically to minimize the time that it takes for you 
@@ -140,12 +140,12 @@ Recommended tools:
 
 ### OPS_MON_03: Define Alarms
 
-Define thresholds in health metrics that could indicate problems with security servers.
+Define thresholds in health metrics that could indicate problems with Security Servers.
 Use alarms to monitor these metrics and notify human operators when then thresholds have been
 breached. For example:
 1. Server CPU or Memory usage is over 80% for more than x data points.
 2. More than x errors detected in system logs over a period of y minutes.
-3. Number of healthy security servers drops below x% of the total.
+3. Number of healthy Security Servers drops below x% of the total.
 4. A health check fails x times in a row.
 
 Review and improve the thresholds, alarm triggers and notification content and mechanisms to 

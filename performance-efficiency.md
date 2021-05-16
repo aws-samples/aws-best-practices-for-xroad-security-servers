@@ -4,22 +4,25 @@
 
 ### PRF_SEL_x: Pick the Right Compute Option
 
-Test your security server performance to pick the best instance or compute type to run your security server workload.
-Additionally, consider how the security server fits into your service development and operations landscape. For example,
-if you are looking to deploy a standalone security server in front of multiple services and the security server would
+Test your Security Server performance to pick the best instance or compute type to run your Security Server workload.
+Additionally, consider how the Security Server fits into your service development and operations landscape. For example,
+if you are looking to deploy a standalone Security Server in front of multiple services and the Security Server would
 be managed by a dedicated team experienced in server administration, deploying as an EC2 instance could be the best fit.
-On the other hand, if the security server is directly coupled to a single containerized service and would benefit from sharing 
-deployment and operations best practices with the service, deploying the security server sidecar container on top of 
+On the other hand, if the Security Server is directly coupled to a single containerized service and would benefit from sharing 
+deployment and operations best practices with the service, deploying the Security Server sidecar container on top of 
 either Elastic Container Service (ECS) or Elastic Kubernetes Service (EKS) would be the best way to go.
 
-For EC2-based security servers:
+For EC2-based Security Servers:
 - c5.large, c5a.large for better CPU performance at a lower cost
 - t3.medium, t3a.medium for a better price point when there's no sustained load on the CPU
 - m5.large, m5a.large when running low on memory
 
+To guarantee the best performance and efficient use of resources, always adjust the memory allocation of different 
+Security Server components with respect to the EC2 host's available memory.
+
 For ECS and EKS based container deployments:
 - Prefer Fargate as the compute engine to reduce server management overhead.
-- If Fargate is not an option, use the same guidance as for EC2-based security servers when picking a container host.
+- If Fargate is not an option, use the same guidance as for EC2-based Security Servers when picking a container host.
 
 **Recommended tools:**
 * [Amazon EC2](https://aws.amazon.com/ec2)
@@ -47,7 +50,7 @@ options or database services are launched.
 
 ### PRF_MON_x: Monitor Your Resources for Performance
 
-Measure the performance characteristics of your security servers over time and use this information to adjust the
+Measure the performance characteristics of your Security Servers over time and use this information to adjust the
 infrastructure setup of your X-Road environments. Analyze metrics when events or incidents occur, to understand and
 diagnose the impact. Establish Key Performance Indicators, such as API latency, to quantify the performance experience
 expected by your customers.
