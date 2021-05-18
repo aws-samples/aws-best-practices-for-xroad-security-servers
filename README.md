@@ -5,6 +5,11 @@ Data is exchanged on X-Road through access points called Security Servers
 (see: [X-Road Architecture](https://x-road.global/architecture)), implementing the same technical specifications.
 Security Servers are required for both producing and consuming data and services via X-Road.
 
+## Before Getting Started
+
+Before you start planning on running your X-Road Security Server and Information System on AWS, take a look at the 
+[Before Getting Started](FAQ.md#before-getting-started) section on the [Frequently Asked Questions](FAQ.md) page. 
+
 ## Best Practices
 
 This project discusses the best practices for deploying X-Road Security Servers on AWS through the lens of 
@@ -43,6 +48,21 @@ The cost optimization pillar focuses on avoiding unnecessary costs. Key topics i
 where money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over 
 time, and scaling to meet business needs without overspending.
 
+
+## I Have More Questions
+
+See the [Frequently Asked Questions](FAQ.md) page for common questions and answers about running your X-Road workloads
+on AWS. If you can't get a satisfying answer from there, [Join the X-Road Community](https://x-road.global/join) to
+meet X-Road enthusiasts around the world and ask for help.
+
+This guide is not intended to provide step-by-step instructions of setting up a Security Server on AWS, as the process
+can vary significantly on your use case. If you feel you need guidance on getting started or someone to take you 
+through the process end-to-end, reach out to the [X-Road Community](https://x-road.global/community) or to   
+[X-Road Technology Partners](https://x-road.global/xroad-technology-partners-companies) for further help.
+
+If you think that there are crucial design guidelines missing from this guide, feel free to 
+[open an issue](https://github.com/aws-samples/aws-best-practices-for-xroad-security-servers/issues/new) and
+describe what's missing in as much detail as you can.
 
 ## Contributing to this Project
 
