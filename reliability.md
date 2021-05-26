@@ -21,7 +21,7 @@ running as EC2 instances, you can pick between EBS volumes or EFS file systems f
 mounting EFS file systems is the best option for persistent storage. 
 
 Prefer using an Amazon RDS database over the built-in PostgreSQL option for best performance and availability. Consider
-sharing an RDS cluster between multiple Security Servers over setting up an RDS cluster per Security Server. RDS offers Muti availability zone support out of the box which makes them highly available and reliable even in case of an availability zone failure. More info for RDS muti AZ support [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
+sharing an RDS cluster between multiple Security Servers over setting up an RDS cluster per Security Server. RDS offers Multi availability zone support out of the box which makes them highly available and reliable even in case of an availability zone failure. More info for RDS multi AZ support [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html)
 
 **Recommended tools:**
 * [Amazon Elastic Block Store](https://aws.amazon.com/ebs/)
