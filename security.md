@@ -2,7 +2,7 @@
 
 ## Identity and Access Management
 
-### SEC_IAM_x: Grant Least Privilege Access
+### SEC_IAM_01: Grant Least Privilege Access
 
 In test and production X-Road environments, minimize user privileges by whitelisting the users only to interact with 
 the resources through the minimal set of operations required to perform their duty.
@@ -10,7 +10,7 @@ the resources through the minimal set of operations required to perform their du
 **Recommended tools:**
 * [AWS IAM](https://aws.amazon.com/iam/)
 
-### SEC_IAM_x: Use Temporary Credentials
+### SEC_IAM_02: Use Temporary Credentials
 
 For workforce identities, use Single Sign-On (SSO), or federation with IAM, to access AWS accounts by assuming
 roles. For users that require command-line access, ensure that they use AWS CLI v2 with SSO login. 
@@ -32,7 +32,7 @@ System administrators can log in to AWS accounts, using either AWS SSO identitie
 already established identity provider (such as Active Directory). With the CLI version 2, SSO identities can be used for
 command-line tools, removing the need for long-term credentials, such as IAM access keys.
 
-### SEC_IAM_x: Store and Use Secrets Securely
+### SEC_IAM_03: Store and Use Secrets Securely
 
 For credentials that are not IAM-related, like database usernames and passwords, use a service that is designed
 to handle management of secrets (e.g. AWS Secrets Manager). Audit and rotate credentials frequently. Configure automatic 
@@ -46,7 +46,7 @@ keys.
 
 ## Detection
 
-### SEC_DET_x: Configure Service and Application Logging
+### SEC_DET_01: Configure Service and Application Logging
 
 Configure logging not only for Security Servers, but for the entire AWS account. Use AWS CloudTrail to log AWS account
 activity, AWS Config to monitor and record resource configuration, Amazon GuardDuty for thread detection, 
@@ -59,7 +59,7 @@ and AWS Security Hub for collecting security alerts and findings in a single pla
 * [AWS Security Hub](https://aws.amazon.com/security-hub/)
 * [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/)
 
-### SEC_DET_x: Analyze Logs, Findings and Metrics Centrally
+### SEC_DET_02: Analyze Logs, Findings and Metrics Centrally
 
 Establish a way to access your logs, metrics and findings centrally to improve your ability to correlate events that
 happen in separate parts of your system. Integrate security and monitoring events with your preferred event management
@@ -71,7 +71,7 @@ systems, like SIEM solutions, bug trackers or ticketing systems, allowing you to
 
 ## Infrastructure Protection
 
-### SEC_IFP_x: Limit Network Access
+### SEC_IFP_01: Limit Network Access
 
 Use security groups to limit incoming traffic to only the ports required for communications from the consumer 
 information system (internally) and from other Security Servers (externally). Limit access to the database cluster
@@ -84,7 +84,7 @@ on the layer boundaries.
 
 ![Limiting Network Access](img/sec-limit-network-access.png)
 
-### SEC_IFP_x: Limit Human Operator Access
+### SEC_IFP_02: Limit Human Operator Access
 
 Disable SSH access to Security Servers. Use AWS System Manager sessions to connect to the Security Servers on the 
 rare (break-glass) occasions when interactive human access is required. Do not allow direct operator access to the 
@@ -95,7 +95,7 @@ databases.
 
 ## Data Protection
 
-### SEC_DTP_x: Enforce Encryption at Rest and in Transit
+### SEC_DTP_01: Enforce Encryption at Rest and in Transit
 
 Configure storage volumes and databases to be encrypted at rest. Create your own encryption keys, instead of 
 default service-managed keys. If you need to be able to completely and immediately remove an encryption key 
@@ -111,7 +111,7 @@ where possible.
 
 ## Incident Response
 
-### SEC_INC_x: Plan for Incidents
+### SEC_INC_01: Plan for Incidents
 
 Ensure that incident responders have correct access pre-provisioned into AWS environments to reduce the time for 
 investigation through to recovery. Pre-deploy necessary tools for incident response. Run game days (exercises) to
