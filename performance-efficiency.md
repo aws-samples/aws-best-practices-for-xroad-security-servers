@@ -14,8 +14,8 @@ either Elastic Container Service (ECS) or Elastic Kubernetes Service (EKS) would
 
 For EC2-based Security Servers:
 - c5.large, c5a.large for better CPU performance at a lower cost
-- t3.medium, t3a.medium for a better price point when there's no sustained load on the CPU,the t* series of instaces also offer burstable performance of CPU utilization above the baseline level. If ttrafic pattern is burstable in nature. 
-- m5.large, m5a.large when running low on memory more info [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html)
+- t3.medium, t3a.medium for a better price point when there's no sustained load on the CPU,the t* series of instaces also offer burstable performance of CPU utilization above the baseline level. These could be a good option if the service ttrafic pattern is burstable in nature more info about burstable instances [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-credits-baseline-concepts.html) 
+- m5.large, m5a.large when running low on memory 
 
 To guarantee the best performance and efficient use of resources, always adjust the memory allocation of different 
 Security Server components with respect to the EC2 host's available memory.
