@@ -14,6 +14,7 @@ practices to reduce human errors.
 * [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
 * [AWS Cloud Development Kit](https://aws.amazon.com/cdk/)
 * [AWS CodeCommit](https://aws.amazon.com/codecommit/)
+* [AWS CodePipeline](https://aws.amazon.com/codepipeline/)
 * [AWS Cloud9](https://aws.amazon.com/cloud9/)
 
 **Example**
