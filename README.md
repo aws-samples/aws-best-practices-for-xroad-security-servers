@@ -53,9 +53,8 @@ time, and scaling to meet business needs without overspending.
 Refer to the [Getting Started with AWS](https://aws.amazon.com/getting-started/) guide for more information about the 
 AWS Cloud and how to launch your first workloads on AWS. 
 
-X-Road Security Servers can be launched on [Amazon EC2](https://aws.amazon.com/ec2) Instances - see the X-Road [Security Server
-Installation Guide for Ubuntu](https://github.com/nordic-institute/X-Road/blob/develop/doc/Manuals/ig-ss_x-road_v6_security_server_installation_guide.md) 
-for more details.
+X-Road Security Servers can be launched on [Amazon EC2](https://aws.amazon.com/ec2) Instances - see the [AWS Quick Start Guide for launching a Linux Virtual Machine](https://docs.aws.amazon.com/quickstarts/latest/vmlaunch/welcome.html) and the X-Road [Security Server Installation Guide for Ubuntu](https://github.com/nordic-institute/X-Road/blob/develop/doc/Manuals/ig-ss_x-road_v6_security_server_installation_guide.md) 
+for more details on how to set up a Security Server on an Ubuntu Linux instance.
 
 Alternatively, [X-Road Security Server Sidecar](https://github.com/nordic-institute/X-Road-Security-Server-sidecar/) containers 
 can be launched on [Amazon Elastic Container Service](https://aws.amazon.com/ecs) or on [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/). 
