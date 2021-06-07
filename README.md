@@ -48,6 +48,25 @@ The cost optimization pillar focuses on avoiding unnecessary costs. Key topics i
 where money is being spent, selecting the most appropriate and right number of resource types, analyzing spend over 
 time, and scaling to meet business needs without overspending.
 
+## Getting Started
+
+Refer to the [Getting Started with AWS](https://aws.amazon.com/getting-started/) guide for more information about the 
+AWS Cloud and how to launch your first workloads on AWS. 
+
+X-Road Security Servers can be launched on [Amazon EC2](https://aws.amazon.com/ec2) Instances - see the X-Road [Security Server
+Installation Guide for Ubuntu](https://github.com/nordic-institute/X-Road/blob/develop/doc/Manuals/ig-ss_x-road_v6_security_server_installation_guide.md) 
+for more details.
+
+Alternatively, [X-Road Security Server Sidecar](https://github.com/nordic-institute/X-Road-Security-Server-sidecar/) containers 
+can be launched on [Amazon Elastic Container Service](https://aws.amazon.com/ecs) or on [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/). 
+See the [Security Server Sidecar User Guide](https://github.com/nordic-institute/X-Road-Security-Server-sidecar/blob/master/doc/security_server_sidecar_user_guide.md)
+for more details.
+
+Consider [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql) or [Amazon Aurora](https://aws.amazon.com/rds/aurora)
+for a Security Server remote database setup option, instead of hosting and managing your own.
+
+For hands-on tutorials on compute, containers and databases, take a look at the 
+[Getting Started Resource Center](https://aws.amazon.com/getting-started/hands-on/?awsf.getting-started-category=category%23compute%7Ccategory%23containers%7Ccategory%23databases&awsf.getting-started-content-type=content-type%23hands-on&?e=gs2020&p=gsrc&getting-started-all.sort-by=item.additionalFields.sortOrder&getting-started-all.sort-order=asc&awsf.getting-started-level=*all).
 
 ## I Have More Questions
 
