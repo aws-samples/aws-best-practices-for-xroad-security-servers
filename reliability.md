@@ -32,7 +32,7 @@ sharing an RDS cluster between multiple Security Servers over setting up an RDS 
 
 Instead of one large Security Server, deploy multiple small ones to reduce the impact of a single failure on the 
 overall workload. Distribute requests across Security Servers to ensure that they don’t share a common point of 
-failure. Additionaly ensure that the when creating mutiple instances of the security server the instances are spread across different availability zones for high availability and reliability. How to do cross zone load balancing can be found [here](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
+failure. Additionaly ensure that the when creating mutiple instances of the security server the instances are spread across different availability zones for high availability and reliability. Information on how to do cross zone load balancing can be found [here](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/how-elastic-load-balancing-works.html)
 
 **Recommended tools:**
 * [Amazon EC2 Auto Scaling Groups](https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html)
